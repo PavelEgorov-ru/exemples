@@ -1,4 +1,4 @@
 program hello;
 begin
-    writeln('Hello, world!')
+    writeln('Привет, мир!')
 end.
