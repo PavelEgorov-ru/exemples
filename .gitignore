@@ -3,4 +3,5 @@
 !*.md
 !pascal
 !pascal/exemp
+!pascal/diamond
 *.o
