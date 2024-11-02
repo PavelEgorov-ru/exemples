@@ -1,7 +1,7 @@
 program diamond;
 
 var
-    n, k, h: integer;
+    half_height, line, height: integer;
 
 procedure PrintSpace(counter: integer);
 var
@@ -27,14 +27,14 @@ begin
     { ввод числа, пока пользователь не введет его как надо }
     repeat
         writeln('введите высоту алмаза, обязательно нечетное число');
-        readln(h)
-    until (h > 0) and (h mod 2 = 1);
-    n := h div 2;
+        readln(height)
+    until (height > 0) and (height mod 2 = 1);
+    half_height := height div 2;
     { печать верхней фигуры }
-    for k := 1 to n + 1 - k do 
-        PrintLineOfDiamond(n, k);
+    for line := 1 to half_height + 1 - line do 
+        PrintLineOfDiamond(half_height, line);
     { печать нижней части }
-    for k := n downto 1 do
-        PrintLineOfDiamond(n, k)
+    for line := half_height downto 1 do
+        PrintLineOfDiamond(half_height, line)
 end.
 
