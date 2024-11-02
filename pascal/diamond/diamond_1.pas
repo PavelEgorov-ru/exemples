@@ -1,7 +1,25 @@
 program diamond;
-
 var
-    half_height, line, height: integer;
+    half_height, line: integer;
+
+procedure DialogUser(var h: integer);
+var
+    height: integer;
+    phrase: string = 'введите высоту алмаза, обязательно нечетное число';
+
+function HalfHeight(a: integer): integer;
+begin
+    HalfHeight:= a div 2
+end;
+
+begin
+    repeat
+        writeln(phrase);
+        readln(height)
+    until (height > 0) and (height mod 2 = 1);
+    h := HalfHeight(height)
+end;
+
 
 procedure PrintSpace(counter: integer);
 var
@@ -25,11 +43,7 @@ end;
 
 begin
     { ввод числа, пока пользователь не введет его как надо }
-    repeat
-        writeln('введите высоту алмаза, обязательно нечетное число');
-        readln(height)
-    until (height > 0) and (height mod 2 = 1);
-    half_height := height div 2;
+    DialogUser(half_height);
     { печать верхней фигуры }
     for line := 1 to half_height + 1 - line do 
         PrintLineOfDiamond(half_height, line);
