@@ -41,17 +41,35 @@ begin
 end;
 
 procedure PrintLineOfDiamond(n, k: integer; c_diamond, c_space: char);
+var
+    the_end: integer;
 begin
+    the_end := n + 1 - k;
+    if k = 1 then begin
+        PrintSpace(n + 3 - k, '9');
+        write(c_space);
+        PrintSpace(n + 3 - k, '9');
+        writeln()
+    end;
+
+
     PrintSpace(n + 3 - k, c_space);
     write(c_diamond);
 
-    if k > 1 then
-    begin
+    if k > 1 then begin
         PrintSpace(2 * k - 3, c_diamond);
         write(c_diamond)
     end;
     PrintSpace(n + 3 - k, c_space);
-    writeln;
+    writeln()
+
+    {if k = the_end then begin
+        PrintSpace(n + 3 - k, c_space);
+        write(c_space);
+        PrintSpace(n + 3 - k, c_space);
+        writeln();
+    end;}
+
 end;
 
 begin
@@ -60,7 +78,7 @@ begin
     { печать верхней фигуры }
     for line := 1 to half_height + 1 - line do 
         PrintLineOfDiamond(half_height, line, ch_diamond, ch_space);
-    { печать нижней части }
+    { печать нижней части, последняя строка печатет неправильно, тк обратный цикл здесь}
     for line := half_height downto 1 do
         PrintLineOfDiamond(half_height, line, ch_diamond, ch_space)
 end.
