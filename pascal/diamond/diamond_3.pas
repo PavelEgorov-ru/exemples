@@ -1,16 +1,16 @@
 program diamond;
 var
     half_height, line: integer;
-    ch_diamond: char;
-    ch_space: char = ' ';
+    ch_diamond, ch_space: char;
 
 
-procedure DialogUser(var h: integer; var c: char);
+procedure DialogUser(var h: integer; var c_diamond, c_space: char);
 var
     height: integer;
-    symbol: char;
+    symbol_diamond, symbol_space: char;
     phrase: string = 'введите высоту алмаза, обязательно нечетное число';
     phrase_2: string = 'введите символ, которым заполнится алмаз';
+    phrase_3: string = 'введите символ, которым заполнится пустое пространство вокруг алмаза';
 
 function HalfHeight(a: integer): integer;
 begin
@@ -24,8 +24,11 @@ begin
     until (height > 0) and (height mod 2 = 1);
     h := HalfHeight(height);
     writeln(phrase_2);
-    readln(symbol);
-    c := symbol
+    readln(symbol_diamond);
+    c_diamond := symbol_diamond;
+    writeln(phrase_3);
+    readln(symbol_space);
+    c_space := symbol_space
 end;
 
 
@@ -37,26 +40,28 @@ begin
         write(c)
 end;
 
-procedure PrintLineOfDiamond(n, k: integer; c: char);
+procedure PrintLineOfDiamond(n, k: integer; c_diamond, c_space: char);
 begin
-    PrintSpace(n + 1 - k, ch_space);
-    write(c);
+    PrintSpace(n + 1 - k, c_space);
+    write(c_diamond);
+
     if k > 1 then
     begin
-        PrintSpace(2 * k - 3, ch_diamond);
-        write(c)
+        PrintSpace(2 * k - 3, c_diamond);
+        write(c_diamond)
     end;
+    PrintSpace(n + 1 - k, c_space);
     writeln;
 end;
 
 begin
     { ввод числа, пока пользователь не введет его как надо }
-    DialogUser(half_height, ch_diamond);
+    DialogUser(half_height, ch_diamond, ch_space);
     { печать верхней фигуры }
     for line := 1 to half_height + 1 - line do 
-        PrintLineOfDiamond(half_height, line, ch_diamond);
+        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space);
     { печать нижней части }
     for line := half_height downto 1 do
-        PrintLineOfDiamond(half_height, line, ch_diamond)
+        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space)
 end.
 
