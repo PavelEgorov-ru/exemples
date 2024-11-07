@@ -42,7 +42,7 @@ end;
 
 procedure PrintLineOfDiamond(n, k: integer; c_diamond, c_space: char);
 begin
-    PrintSpace(n + 1 - k, c_space);
+    PrintSpace(n + 3 - k, c_space);
     write(c_diamond);
 
     if k > 1 then
@@ -50,7 +50,7 @@ begin
         PrintSpace(2 * k - 3, c_diamond);
         write(c_diamond)
     end;
-    PrintSpace(n + 1 - k, c_space);
+    PrintSpace(n + 3 - k, c_space);
     writeln;
 end;
 
