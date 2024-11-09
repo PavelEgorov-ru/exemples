@@ -2,16 +2,17 @@ program diamond;
 var
     half_height, line: integer;
     ch_diamond, ch_space: char;
+    count_diamond: integer;
     top: boolean = true;
 
-procedure DialogUser(var h: integer; var c_diamond, c_space: char);
+procedure DialogUser(var h, c: integer; var c_diamond, c_space: char);
 var
-    height: integer;
+    height, count: integer;
     symbol_diamond, symbol_space: char;
     phrase: string = 'введите высоту алмаза, обязательно нечетное число';
     phrase_2: string = 'введите символ, которым заполнится алмаз';
     phrase_3: string = 'введите символ, которым заполнится пустое пространство вокруг алмаза';
-
+    phrase_4: string = 'введите количество алмазов от 1 до 4';
 function HalfHeight(a: integer): integer;
 begin
     HalfHeight:= a div 2
@@ -28,7 +29,12 @@ begin
     c_diamond := symbol_diamond;
     writeln(phrase_3);
     readln(symbol_space);
-    c_space := symbol_space
+    c_space := symbol_space;
+    repeat
+        writeln(phrase_4);
+        readln(count)
+    until (count > 0) and (count < 5);
+    c := count
 end;
 
 
@@ -40,41 +46,48 @@ begin
         write(c)
 end;
 
-procedure PrintLineOfDiamond(n, k: integer; c_diamond, c_space: char; var t: boolean);
+procedure PrintLineOfDiamond(n, k, c: integer; c_diamond, c_space: char; t: boolean);
+var
+    z: integer;
 begin
     if t and (k = 1) then begin
-        PrintSpace(n + 3 - k, c_space);
-        write(c_space);
-        PrintSpace(n + 3 - k, c_space);
+        for z := 1 to c do begin
+            PrintSpace(n + 3 - k, c_space);
+            write(c_space);
+            PrintSpace(n + 3 - k, c_space)
+        end;
         writeln()
     end;
+    for z := 1 to c do begin
+        PrintSpace(n + 3 - k, c_space);
+        write(c_diamond);
 
-    PrintSpace(n + 3 - k, c_space);
-    write(c_diamond);
-
-    if k > 1 then begin
-        PrintSpace(2 * k - 3, c_diamond);
-        write(c_diamond)
+        if k > 1 then begin
+            PrintSpace(2 * k - 3, c_diamond);
+            write(c_diamond)
+        end;
+        PrintSpace(n + 3 - k, c_space)
     end;
-    PrintSpace(n + 3 - k, c_space);
     writeln();
     if not t and (k = 1) then begin
-        PrintSpace(n + 3 - k, c_space);
-        write(c_space);
-        PrintSpace(n + 3 - k, c_space);
+        for z := 1 to c do begin
+            PrintSpace(n + 3 - k, c_space);
+            write(c_space);
+            PrintSpace(n + 3 - k, c_space)
+        end;
         writeln()
     end
 end;
 
 begin
     { ввод числа, пока пользователь не введет его как надо }
-    DialogUser(half_height, ch_diamond, ch_space);
+    DialogUser(half_height, count_diamond, ch_diamond, ch_space);
     { печать верхней фигуры }
     for line := 1 to half_height + 1 - line do 
-        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space, top);
+        PrintLineOfDiamond(half_height, line, count_diamond, ch_diamond, ch_space, top);
     { печать нижней части, последняя строка печатет неправильно, тк обратный цикл здесь}
     top := false;
     for line := half_height downto 1 do
-        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space, top)
+        PrintLineOfDiamond(half_height, line, count_diamond, ch_diamond, ch_space, top)
 end.
 
