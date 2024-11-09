@@ -2,7 +2,7 @@ program diamond;
 var
     half_height, line: integer;
     ch_diamond, ch_space: char;
-
+    top: boolean = true;
 
 procedure DialogUser(var h: integer; var c_diamond, c_space: char);
 var
@@ -40,18 +40,14 @@ begin
         write(c)
 end;
 
-procedure PrintLineOfDiamond(n, k: integer; c_diamond, c_space: char);
-var
-    the_end: integer;
+procedure PrintLineOfDiamond(n, k: integer; c_diamond, c_space: char; var t: boolean);
 begin
-    the_end := n + 1 - k;
-    if k = 1 then begin
-        PrintSpace(n + 3 - k, '9');
+    if t and (k = 1) then begin
+        PrintSpace(n + 3 - k, c_space);
         write(c_space);
-        PrintSpace(n + 3 - k, '9');
+        PrintSpace(n + 3 - k, c_space);
         writeln()
     end;
-
 
     PrintSpace(n + 3 - k, c_space);
     write(c_diamond);
@@ -61,15 +57,13 @@ begin
         write(c_diamond)
     end;
     PrintSpace(n + 3 - k, c_space);
-    writeln()
-
-    {if k = the_end then begin
+    writeln();
+    if not t and (k = 1) then begin
         PrintSpace(n + 3 - k, c_space);
         write(c_space);
         PrintSpace(n + 3 - k, c_space);
-        writeln();
-    end;}
-
+        writeln()
+    end
 end;
 
 begin
@@ -77,9 +71,10 @@ begin
     DialogUser(half_height, ch_diamond, ch_space);
     { печать верхней фигуры }
     for line := 1 to half_height + 1 - line do 
-        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space);
+        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space, top);
     { печать нижней части, последняя строка печатет неправильно, тк обратный цикл здесь}
+    top := false;
     for line := half_height downto 1 do
-        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space)
+        PrintLineOfDiamond(half_height, line, ch_diamond, ch_space, top)
 end.
 
