@@ -7,13 +7,10 @@ var
 begin
     res := 0;
     pos := 0;
-    {разобраться, почему в примере нужен цикл с пост условием,
-    если все работает и без него}
-    {repeat
+    repeat
         read(c);
         pos := pos + 1
-    until (c <> ' ') and (c <> #10);}
-    read(c);
+    until (c <> ' ') and (c <> #10);
     while (c <> ' ') and (c <> #10) do 
     begin
         writeln('второй цикл');
