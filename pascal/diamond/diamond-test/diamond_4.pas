@@ -1,4 +1,11 @@
 program diamond;
+
+const
+    phrase = 'введите высоту алмаза, обязательно нечетное число';
+    phrase_2 = 'введите символ, которым заполнится алмаз';
+    phrase_3 = 'введите символ, которым заполнится пустое пространство вокруг алмаза';
+    phrase_4 = 'введите количество алмазов от 1 до 4';
+
 var
     half_height, line: integer;
     ch_diamond, ch_space: char;
@@ -9,10 +16,7 @@ procedure DialogUser(var h, c: integer; var c_diamond, c_space: char);
 var
     height, count: integer;
     symbol_diamond, symbol_space: char;
-    phrase: string = 'введите высоту алмаза, обязательно нечетное число';
-    phrase_2: string = 'введите символ, которым заполнится алмаз';
-    phrase_3: string = 'введите символ, которым заполнится пустое пространство вокруг алмаза';
-    phrase_4: string = 'введите количество алмазов от 1 до 4';
+
 function HalfHeight(a: integer): integer;
 begin
     HalfHeight:= a div 2
