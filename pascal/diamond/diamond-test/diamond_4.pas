@@ -1,4 +1,5 @@
 program diamond;
+uses utils;
 
 const
     phrase = 'введите высоту алмаза, обязательно нечетное число';
@@ -14,37 +15,24 @@ var
 
 procedure DialogUser(var h, c: integer; var c_diamond, c_space: char);
 var
-    height, count: integer;
-    symbol_diamond, symbol_space: char;
-
-function HalfHeight(a: integer): integer;
-begin
-    HalfHeight:= a div 2
-end;
+    height: integer;
 
 begin
     repeat
-        writeln(phrase);
-        readln(height)
+        DialogNum(phrase, height);
     until (height > 0) and (height mod 2 = 1);
     h := HalfHeight(height);
-    writeln(phrase_2);
-    readln(symbol_diamond);
+    DialogStr(phrase_2, c_diamond);
 
     {$IFDEF DEBUG}
     writeln('DEBUG: ','symbol_diamond: ', symbol_diamond );
     writeln('DEBUG: ', 'h: ', h);
     {$ENDIF}
 
-    c_diamond := symbol_diamond;
-    writeln(phrase_3);
-    readln(symbol_space);
-    c_space := symbol_space;
+    DialogStr(phrase_3, c_space);
     repeat
-        writeln(phrase_4);
-        readln(count)
-    until (count > 0) and (count < 5);
-    c := count
+        DialogNum(phrase_4, c);
+    until (c > 0) and (c < 5);
 end;
 
 
