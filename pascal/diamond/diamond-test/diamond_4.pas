@@ -30,6 +30,10 @@ begin
     h := HalfHeight(height);
     writeln(phrase_2);
     readln(symbol_diamond);
+    {$IFDEF DEBUG}
+    writeln('DEBUG: ','symbol_diamond: ', symbol_diamond );
+    writeln('DEBUG: ', 'h: ', h);
+    {$ENDIF}
     c_diamond := symbol_diamond;
     writeln(phrase_3);
     readln(symbol_space);
