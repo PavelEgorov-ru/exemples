@@ -1,5 +1,6 @@
 *
 !*.pas
+!*.pp
 !*.md
 !pascal
 !pascal/exemp
