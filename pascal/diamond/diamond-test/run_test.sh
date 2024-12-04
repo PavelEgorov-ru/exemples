@@ -2,7 +2,7 @@
 
 
 while read a b; do
-    res='echo $a | ./diamond_tests'
+    res='echo $a | ./diamond_test3 one'
     if [ "$b" != x"$res"]; then
         echo "TEST сломан"
     else
@@ -17,13 +17,13 @@ END
 
 
 while read a b; do
-    res='echo $a | ./diamond_tests2'
-    if [ "$b" != x"$res"]; then
+    res='echo $a | ./diamond_test3 dsdsdsds`'
+    if [ $b == $res]; then
         echo "TEST сломан"
     else
         echo "Все хорошо, строки совпадают"
     fi
 done << END
-    "#" "#"
+    "#" "4"
     "*" "*"
 END
