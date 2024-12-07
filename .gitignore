@@ -7,4 +7,6 @@
 !pascal/exemp
 !pascal/diamond
 !pascal/diamond/diamond-test
+!pascal/read_str
+!pascal/read_str/read_str-test
 *.o
