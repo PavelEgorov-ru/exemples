@@ -4,7 +4,7 @@ const
     MaxChars = 52;
 
 type
-    CheckCharsArray = array [1..MaxChars] of word;
+    CheckCharsArray = array [1..MaxChars] of boolean;
     PrintCharsArray = array [1..255] of word;
 
 var
@@ -34,7 +34,7 @@ end;
 
 begin
     for i := 1 to MaxChars do
-        check_array[i] := 0;
+        check_array[i] := false;
     for i := 1 to 255 do
         print_array[i] := 0;
     PrintCheckArr(check_array, MaxChars);
